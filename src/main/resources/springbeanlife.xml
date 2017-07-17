@@ -8,7 +8,69 @@
    
    
    <bean id = "singleton" class = "com.accenture.springcore.beanscope.Singleton" scope = "singleton">
+   		
+   	  <constructor-arg  value="singletonMessage"></constructor-arg>  
+   		
+   		<!-- results in a setAddressList(java.util.List) call -->
+      <property  name = "addressList">
+         <list>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+         </list>
+      </property>
+
+      <!-- results in a setAddressSet(java.util.Set) call -->
+      <property name = "addressSet">
+         <set>
+            <value>INDIA</value>
+            <value>Pakistan</value>
+            <value>USA</value>
+            <value>USA</value>
+         </set>
+      </property>
+
+      <!-- results in a setAddressMap(java.util.Map) call -->
+      <property name = "addressMap">
+         <map>
+            <entry key = "1" value = "INDIA"/>
+            <entry key = "2" value = "Pakistan"/>
+            <entry key = "3" value = "USA"/>
+            <entry key = "4" value = "USA"/>
+         </map>
+      </property>
+
+		 <!-- results in a setpros(java.util.Properties) call -->
+		<property name="Pros">
+			<props>
+				<prop key="admin">admin@gmail.com</prop>
+				<prop key="support">support@gmail.com</prop>
+			</props>
+		</property>
+   
+   
    </bean>
+   
+   
+   <bean id="PDFHelper" class="com.accenture.springcore.DI.PDFHelper">
+		<property name="reportGenerator" ref="PDFGenerator" />
+	</bean>
+
+	<bean id="PDFGenerator" class="com.accenture.springcore.DI.PDFGenerator" />
+   
+   <bean id="ExcelHelper" class="com.accenture.springcore.DI.ExcelHelper">
+		<constructor-arg>
+			<ref bean="ExcelGenerator" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="ExcelGenerator" class="com.accenture.springcore.DI.ExcelGenerator" />
+	
+	
+	
+   
+   
    
    
    
